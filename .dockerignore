@@ -1,0 +1,12 @@
+.venv/
+.idea/
+.git/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+data/support_ops.db
+models/*.joblib
+tests/
+automation/
+examples/
+README.md

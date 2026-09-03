@@ -186,6 +186,13 @@ Run tests:
 python -m pytest -q
 ```
 
+## Run with Docker
+
+Build the image. The build reproduces the ML training pipeline and creates the model artifacts inside the image:
+
+```powershell
+docker build --tag support-ops-intelligence:0.1.0 .
+
 ## n8n automation
 
 The exported workflow is available at:
