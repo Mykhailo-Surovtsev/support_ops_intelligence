@@ -1,0 +1,401 @@
+ticket_number,subject,description,channel,customer_tier,description_length,contains_payment_keyword,contains_outage_keyword,exclamation_count,priority
+1,Update profile,I need help updating profile preferences in account settings.,web,free,61,0,0,0,low
+2,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,email,pro,87,0,0,1,low
+3,Invoice issue,The invoice amount is incorrect and requires clarification.,email,pro,59,1,0,0,medium
+4,Refund request,I need help with a refund for an unexpected payment.,web,free,52,1,0,0,medium
+5,Login outage,Users cannot log in to the product and work is blocked.,chat,free,55,0,1,0,high
+6,Login outage,Users cannot log in to the product and work is blocked.,email,free,55,0,1,0,high
+7,Login outage,Users cannot log in to the product and work is blocked.,web,free,55,0,1,0,medium
+8,Password reset,I need instructions for resetting my account password.,chat,pro,54,0,0,0,low
+9,Update profile,I need help updating profile preferences in account settings.,email,enterprise,61,0,0,0,medium
+10,Update profile,I need help updating profile preferences in account settings.,chat,free,61,0,0,0,low
+11,Update profile,I need help updating profile preferences in account settings.,web,pro,61,0,0,0,low
+12,Refund request,I need help with a refund for an unexpected payment.,web,pro,52,1,0,0,medium
+13,Update profile,I need help updating profile preferences in account settings.,email,pro,61,0,0,0,low
+14,Critical application error,The application returns an error for every user in our account.,web,free,63,0,1,0,high
+15,Feature question,Could you explain how to use the reporting feature?,email,free,51,0,0,0,low
+16,Invoice issue,The invoice amount is incorrect and requires clarification.,chat,enterprise,59,1,0,0,high
+17,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,chat,free,87,0,0,1,low
+18,Password reset,I need instructions for resetting my account password.,chat,pro,54,0,0,0,low
+19,Refund request,I need help with a refund for an unexpected payment. Please help as soon as possible!,web,enterprise,85,1,0,1,high
+20,Password reset,I need instructions for resetting my account password.,chat,pro,54,0,0,0,low
+21,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,web,enterprise,68,0,1,0,high
+22,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,web,free,68,0,1,0,high
+23,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,web,enterprise,68,0,1,0,high
+24,Feature question,Could you explain how to use the reporting feature?,email,free,51,0,0,0,low
+25,Update profile,I need help updating profile preferences in account settings.,email,free,61,0,0,0,high
+26,Payment charged twice,My card was charged twice for the same subscription payment. Please help as soon as possible!,web,pro,93,1,0,1,medium
+27,Feature question,Could you explain how to use the reporting feature?,web,enterprise,51,0,0,0,medium
+28,Password reset,I need instructions for resetting my account password.,web,free,54,0,0,0,low
+29,Feature question,Could you explain how to use the reporting feature?,web,free,51,0,0,0,low
+30,Update profile,I need help updating profile preferences in account settings. Please help as soon as possible!,web,free,94,0,0,1,low
+31,Payment charged twice,My card was charged twice for the same subscription payment.,chat,free,60,1,0,0,medium
+32,Payment charged twice,My card was charged twice for the same subscription payment.,web,enterprise,60,1,0,0,high
+33,Feature question,Could you explain how to use the reporting feature?,email,free,51,0,0,0,low
+34,Invoice issue,The invoice amount is incorrect and requires clarification.,email,pro,59,1,0,0,medium
+35,Refund request,I need help with a refund for an unexpected payment. Please help as soon as possible!,email,free,85,1,0,1,medium
+36,Refund request,I need help with a refund for an unexpected payment.,chat,free,52,1,0,0,medium
+37,Password reset,I need instructions for resetting my account password.,email,free,54,0,0,0,low
+38,Update profile,I need help updating profile preferences in account settings.,email,free,61,0,0,0,low
+39,Update profile,I need help updating profile preferences in account settings.,chat,free,61,0,0,0,low
+40,Feature question,Could you explain how to use the reporting feature?,chat,pro,51,0,0,0,low
+41,Feature question,Could you explain how to use the reporting feature?,email,free,51,0,0,0,high
+42,Password reset,I need instructions for resetting my account password.,chat,free,54,0,0,0,low
+43,Update profile,I need help updating profile preferences in account settings. Please help as soon as possible!,email,enterprise,94,0,0,1,medium
+44,Password reset,I need instructions for resetting my account password.,email,free,54,0,0,0,low
+45,Update profile,I need help updating profile preferences in account settings.,web,free,61,0,0,0,low
+46,Refund request,I need help with a refund for an unexpected payment.,email,pro,52,1,0,0,medium
+47,Critical application error,The application returns an error for every user in our account.,chat,free,63,0,1,0,high
+48,Critical application error,The application returns an error for every user in our account. Please help as soon as possible!,web,enterprise,96,0,1,1,high
+49,Refund request,I need help with a refund for an unexpected payment.,email,enterprise,52,1,0,0,high
+50,Password reset,I need instructions for resetting my account password.,chat,pro,54,0,0,0,low
+51,Critical application error,The application returns an error for every user in our account. Please help as soon as possible!,chat,enterprise,96,0,1,1,high
+52,Payment charged twice,My card was charged twice for the same subscription payment.,web,pro,60,1,0,0,medium
+53,Update profile,I need help updating profile preferences in account settings.,web,pro,61,0,0,0,low
+54,Update profile,I need help updating profile preferences in account settings.,email,pro,61,0,0,0,medium
+55,Password reset,I need instructions for resetting my account password.,chat,free,54,0,0,0,low
+56,Update profile,I need help updating profile preferences in account settings.,email,enterprise,61,0,0,0,medium
+57,Login outage,Users cannot log in to the product and work is blocked.,web,pro,55,0,1,0,medium
+58,Update profile,I need help updating profile preferences in account settings.,chat,free,61,0,0,0,low
+59,Feature question,Could you explain how to use the reporting feature?,web,pro,51,0,0,0,low
+60,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,chat,free,68,0,1,0,high
+61,Password reset,I need instructions for resetting my account password.,web,pro,54,0,0,0,low
+62,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,chat,free,68,0,1,0,high
+63,Payment charged twice,My card was charged twice for the same subscription payment. Please help as soon as possible!,email,free,93,1,0,1,medium
+64,Feature question,Could you explain how to use the reporting feature?,chat,pro,51,0,0,0,low
+65,Update profile,I need help updating profile preferences in account settings.,email,enterprise,61,0,0,0,medium
+66,Update profile,I need help updating profile preferences in account settings.,email,pro,61,0,0,0,low
+67,Invoice issue,The invoice amount is incorrect and requires clarification.,email,free,59,1,0,0,medium
+68,Update profile,I need help updating profile preferences in account settings.,web,enterprise,61,0,0,0,medium
+69,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,email,free,87,0,0,1,low
+70,Refund request,I need help with a refund for an unexpected payment.,web,pro,52,1,0,0,medium
+71,Refund request,I need help with a refund for an unexpected payment.,chat,free,52,1,0,0,medium
+72,Refund request,I need help with a refund for an unexpected payment. Please help as soon as possible!,web,pro,85,1,0,1,medium
+73,Payment charged twice,My card was charged twice for the same subscription payment.,chat,free,60,1,0,0,medium
+74,Feature question,Could you explain how to use the reporting feature?,chat,free,51,0,0,0,low
+75,Password reset,I need instructions for resetting my account password.,email,pro,54,0,0,0,low
+76,Update profile,I need help updating profile preferences in account settings.,email,pro,61,0,0,0,low
+77,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,chat,pro,68,0,1,0,high
+78,Password reset,I need instructions for resetting my account password.,email,pro,54,0,0,0,low
+79,Critical application error,The application returns an error for every user in our account.,email,enterprise,63,0,1,0,high
+80,Update profile,I need help updating profile preferences in account settings.,email,pro,61,0,0,0,low
+81,Update profile,I need help updating profile preferences in account settings.,chat,free,61,0,0,0,low
+82,Feature question,Could you explain how to use the reporting feature?,chat,pro,51,0,0,0,low
+83,Password reset,I need instructions for resetting my account password.,chat,enterprise,54,0,0,0,medium
+84,Payment charged twice,My card was charged twice for the same subscription payment.,web,free,60,1,0,0,medium
+85,Refund request,I need help with a refund for an unexpected payment.,email,pro,52,1,0,0,medium
+86,Update profile,I need help updating profile preferences in account settings.,email,free,61,0,0,0,low
+87,Refund request,I need help with a refund for an unexpected payment.,chat,free,52,1,0,0,medium
+88,Invoice issue,The invoice amount is incorrect and requires clarification.,web,free,59,1,0,0,medium
+89,Refund request,I need help with a refund for an unexpected payment.,chat,pro,52,1,0,0,medium
+90,Invoice issue,The invoice amount is incorrect and requires clarification.,web,pro,59,1,0,0,medium
+91,Refund request,I need help with a refund for an unexpected payment.,chat,free,52,1,0,0,medium
+92,Payment charged twice,My card was charged twice for the same subscription payment.,chat,enterprise,60,1,0,0,high
+93,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,web,pro,87,0,0,1,low
+94,Update profile,I need help updating profile preferences in account settings.,email,free,61,0,0,0,low
+95,Refund request,I need help with a refund for an unexpected payment.,chat,pro,52,1,0,0,medium
+96,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,web,pro,68,0,1,0,high
+97,Password reset,I need instructions for resetting my account password.,email,pro,54,0,0,0,low
+98,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,email,free,68,0,1,0,high
+99,Invoice issue,The invoice amount is incorrect and requires clarification. Please help as soon as possible!,chat,pro,92,1,0,1,medium
+100,Update profile,I need help updating profile preferences in account settings. Please help as soon as possible!,email,enterprise,94,0,0,1,medium
+101,Feature question,Could you explain how to use the reporting feature? Please help as soon as possible!,chat,enterprise,84,0,0,1,medium
+102,Update profile,I need help updating profile preferences in account settings.,email,pro,61,0,0,0,low
+103,Password reset,I need instructions for resetting my account password.,email,free,54,0,0,0,low
+104,Refund request,I need help with a refund for an unexpected payment.,email,pro,52,1,0,0,medium
+105,Password reset,I need instructions for resetting my account password.,chat,pro,54,0,0,0,low
+106,Feature question,Could you explain how to use the reporting feature?,web,pro,51,0,0,0,low
+107,Invoice issue,The invoice amount is incorrect and requires clarification.,web,free,59,1,0,0,medium
+108,Login outage,Users cannot log in to the product and work is blocked.,email,pro,55,0,1,0,high
+109,Refund request,I need help with a refund for an unexpected payment.,chat,free,52,1,0,0,medium
+110,Invoice issue,The invoice amount is incorrect and requires clarification.,web,enterprise,59,1,0,0,high
+111,Payment charged twice,My card was charged twice for the same subscription payment.,web,free,60,1,0,0,medium
+112,Invoice issue,The invoice amount is incorrect and requires clarification. Please help as soon as possible!,chat,free,92,1,0,1,medium
+113,Payment charged twice,My card was charged twice for the same subscription payment.,chat,pro,60,1,0,0,medium
+114,Invoice issue,The invoice amount is incorrect and requires clarification.,web,free,59,1,0,0,medium
+115,Payment charged twice,My card was charged twice for the same subscription payment. Please help as soon as possible!,web,free,93,1,0,1,medium
+116,Update profile,I need help updating profile preferences in account settings.,email,free,61,0,0,0,low
+117,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,web,free,87,0,0,1,low
+118,Payment charged twice,My card was charged twice for the same subscription payment.,chat,free,60,1,0,0,medium
+119,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,chat,pro,87,0,0,1,low
+120,Payment charged twice,My card was charged twice for the same subscription payment.,web,free,60,1,0,0,medium
+121,Feature question,Could you explain how to use the reporting feature? Please help as soon as possible!,chat,free,84,0,0,1,low
+122,Password reset,I need instructions for resetting my account password.,email,free,54,0,0,0,low
+123,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,email,pro,68,0,1,0,high
+124,Password reset,I need instructions for resetting my account password.,chat,free,54,0,0,0,low
+125,Feature question,Could you explain how to use the reporting feature?,web,pro,51,0,0,0,low
+126,Update profile,I need help updating profile preferences in account settings.,web,free,61,0,0,0,low
+127,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,email,free,68,0,1,0,high
+128,Payment charged twice,My card was charged twice for the same subscription payment.,chat,pro,60,1,0,0,medium
+129,Feature question,Could you explain how to use the reporting feature?,web,pro,51,0,0,0,low
+130,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,web,free,68,0,1,0,high
+131,Login outage,Users cannot log in to the product and work is blocked.,web,pro,55,0,1,0,high
+132,Critical application error,The application returns an error for every user in our account.,chat,pro,63,0,1,0,high
+133,Payment charged twice,My card was charged twice for the same subscription payment.,web,free,60,1,0,0,medium
+134,Payment charged twice,My card was charged twice for the same subscription payment.,email,enterprise,60,1,0,0,high
+135,Password reset,I need instructions for resetting my account password.,chat,pro,54,0,0,0,low
+136,Refund request,I need help with a refund for an unexpected payment.,chat,free,52,1,0,0,medium
+137,Payment charged twice,My card was charged twice for the same subscription payment.,chat,free,60,1,0,0,medium
+138,Feature question,Could you explain how to use the reporting feature?,chat,pro,51,0,0,0,low
+139,Password reset,I need instructions for resetting my account password.,email,free,54,0,0,0,low
+140,Feature question,Could you explain how to use the reporting feature? Please help as soon as possible!,web,pro,84,0,0,1,low
+141,Payment charged twice,My card was charged twice for the same subscription payment.,email,pro,60,1,0,0,medium
+142,Payment charged twice,My card was charged twice for the same subscription payment. Please help as soon as possible!,email,free,93,1,0,1,medium
+143,Feature question,Could you explain how to use the reporting feature?,email,free,51,0,0,0,low
+144,Feature question,Could you explain how to use the reporting feature?,web,free,51,0,0,0,low
+145,Update profile,I need help updating profile preferences in account settings.,chat,enterprise,61,0,0,0,medium
+146,Feature question,Could you explain how to use the reporting feature?,web,pro,51,0,0,0,low
+147,Refund request,I need help with a refund for an unexpected payment. Please help as soon as possible!,web,free,85,1,0,1,medium
+148,Update profile,I need help updating profile preferences in account settings.,email,free,61,0,0,0,low
+149,Password reset,I need instructions for resetting my account password.,chat,pro,54,0,0,0,low
+150,Password reset,I need instructions for resetting my account password.,chat,enterprise,54,0,0,0,medium
+151,Invoice issue,The invoice amount is incorrect and requires clarification.,chat,free,59,1,0,0,medium
+152,Password reset,I need instructions for resetting my account password.,chat,free,54,0,0,0,high
+153,Refund request,I need help with a refund for an unexpected payment.,chat,enterprise,52,1,0,0,high
+154,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,email,pro,68,0,1,0,high
+155,Feature question,Could you explain how to use the reporting feature?,email,pro,51,0,0,0,low
+156,Invoice issue,The invoice amount is incorrect and requires clarification.,email,free,59,1,0,0,medium
+157,Feature question,Could you explain how to use the reporting feature?,web,free,51,0,0,0,low
+158,Feature question,Could you explain how to use the reporting feature?,web,pro,51,0,0,0,low
+159,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,email,pro,68,0,1,0,high
+160,Feature question,Could you explain how to use the reporting feature?,email,pro,51,0,0,0,low
+161,Login outage,Users cannot log in to the product and work is blocked.,email,free,55,0,1,0,high
+162,Payment charged twice,My card was charged twice for the same subscription payment.,email,pro,60,1,0,0,medium
+163,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,web,enterprise,68,0,1,0,high
+164,Update profile,I need help updating profile preferences in account settings.,email,free,61,0,0,0,low
+165,Login outage,Users cannot log in to the product and work is blocked. Please help as soon as possible!,chat,pro,88,0,1,1,high
+166,Invoice issue,The invoice amount is incorrect and requires clarification.,chat,pro,59,1,0,0,medium
+167,Update profile,I need help updating profile preferences in account settings. Please help as soon as possible!,chat,enterprise,94,0,0,1,medium
+168,Refund request,I need help with a refund for an unexpected payment.,web,free,52,1,0,0,medium
+169,Invoice issue,The invoice amount is incorrect and requires clarification.,web,pro,59,1,0,0,medium
+170,Feature question,Could you explain how to use the reporting feature?,email,pro,51,0,0,0,low
+171,Password reset,I need instructions for resetting my account password.,web,pro,54,0,0,0,low
+172,Critical application error,The application returns an error for every user in our account.,web,free,63,0,1,0,medium
+173,Update profile,I need help updating profile preferences in account settings.,chat,free,61,0,0,0,low
+174,Feature question,Could you explain how to use the reporting feature?,web,pro,51,0,0,0,low
+175,Feature question,Could you explain how to use the reporting feature?,chat,pro,51,0,0,0,low
+176,Update profile,I need help updating profile preferences in account settings.,email,enterprise,61,0,0,0,medium
+177,Password reset,I need instructions for resetting my account password.,chat,free,54,0,0,0,low
+178,Login outage,Users cannot log in to the product and work is blocked.,web,pro,55,0,1,0,high
+179,Feature question,Could you explain how to use the reporting feature?,email,pro,51,0,0,0,low
+180,Feature question,Could you explain how to use the reporting feature? Please help as soon as possible!,web,free,84,0,0,1,low
+181,Feature question,Could you explain how to use the reporting feature? Please help as soon as possible!,web,free,84,0,0,1,low
+182,Refund request,I need help with a refund for an unexpected payment.,email,free,52,1,0,0,medium
+183,Invoice issue,The invoice amount is incorrect and requires clarification.,web,pro,59,1,0,0,medium
+184,Feature question,Could you explain how to use the reporting feature?,web,free,51,0,0,0,low
+185,Update profile,I need help updating profile preferences in account settings.,web,free,61,0,0,0,low
+186,Update profile,I need help updating profile preferences in account settings.,web,free,61,0,0,0,low
+187,Login outage,Users cannot log in to the product and work is blocked.,email,enterprise,55,0,1,0,high
+188,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,web,pro,68,0,1,0,medium
+189,Payment charged twice,My card was charged twice for the same subscription payment.,web,free,60,1,0,0,medium
+190,Update profile,I need help updating profile preferences in account settings.,chat,pro,61,0,0,0,low
+191,Payment charged twice,My card was charged twice for the same subscription payment.,email,pro,60,1,0,0,medium
+192,Update profile,I need help updating profile preferences in account settings.,email,free,61,0,0,0,low
+193,Login outage,Users cannot log in to the product and work is blocked.,email,free,55,0,1,0,high
+194,Login outage,Users cannot log in to the product and work is blocked. Please help as soon as possible!,chat,pro,88,0,1,1,high
+195,Update profile,I need help updating profile preferences in account settings.,web,pro,61,0,0,0,low
+196,Payment charged twice,My card was charged twice for the same subscription payment.,email,enterprise,60,1,0,0,high
+197,Critical application error,The application returns an error for every user in our account. Please help as soon as possible!,chat,free,96,0,1,1,high
+198,Login outage,Users cannot log in to the product and work is blocked.,web,pro,55,0,1,0,high
+199,Password reset,I need instructions for resetting my account password.,chat,free,54,0,0,0,low
+200,Password reset,I need instructions for resetting my account password.,web,enterprise,54,0,0,0,medium
+201,Payment charged twice,My card was charged twice for the same subscription payment.,chat,free,60,1,0,0,medium
+202,Login outage,Users cannot log in to the product and work is blocked.,chat,pro,55,0,1,0,high
+203,Update profile,I need help updating profile preferences in account settings. Please help as soon as possible!,email,pro,94,0,0,1,low
+204,Update profile,I need help updating profile preferences in account settings.,web,free,61,0,0,0,low
+205,Feature question,Could you explain how to use the reporting feature?,chat,enterprise,51,0,0,0,medium
+206,Update profile,I need help updating profile preferences in account settings.,chat,pro,61,0,0,0,low
+207,Invoice issue,The invoice amount is incorrect and requires clarification. Please help as soon as possible!,chat,free,92,1,0,1,medium
+208,Refund request,I need help with a refund for an unexpected payment.,web,free,52,1,0,0,medium
+209,Password reset,I need instructions for resetting my account password.,web,pro,54,0,0,0,low
+210,Password reset,I need instructions for resetting my account password.,chat,free,54,0,0,0,low
+211,Feature question,Could you explain how to use the reporting feature? Please help as soon as possible!,email,free,84,0,0,1,low
+212,Critical application error,The application returns an error for every user in our account. Please help as soon as possible!,web,enterprise,96,0,1,1,high
+213,Refund request,I need help with a refund for an unexpected payment.,chat,free,52,1,0,0,medium
+214,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,email,enterprise,87,0,0,1,medium
+215,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,chat,free,68,0,1,0,high
+216,Payment charged twice,My card was charged twice for the same subscription payment.,web,free,60,1,0,0,medium
+217,Feature question,Could you explain how to use the reporting feature? Please help as soon as possible!,web,pro,84,0,0,1,low
+218,Update profile,I need help updating profile preferences in account settings.,email,free,61,0,0,0,low
+219,Refund request,I need help with a refund for an unexpected payment.,email,free,52,1,0,0,medium
+220,Invoice issue,The invoice amount is incorrect and requires clarification.,email,pro,59,1,0,0,medium
+221,Critical application error,The application returns an error for every user in our account.,email,free,63,0,1,0,medium
+222,Password reset,I need instructions for resetting my account password.,chat,pro,54,0,0,0,low
+223,Login outage,Users cannot log in to the product and work is blocked.,email,pro,55,0,1,0,high
+224,Update profile,I need help updating profile preferences in account settings.,chat,pro,61,0,0,0,low
+225,Refund request,I need help with a refund for an unexpected payment.,chat,pro,52,1,0,0,medium
+226,Critical application error,The application returns an error for every user in our account. Please help as soon as possible!,email,pro,96,0,1,1,high
+227,Invoice issue,The invoice amount is incorrect and requires clarification. Please help as soon as possible!,email,free,92,1,0,1,medium
+228,Password reset,I need instructions for resetting my account password.,email,free,54,0,0,0,low
+229,Password reset,I need instructions for resetting my account password.,chat,pro,54,0,0,0,low
+230,Feature question,Could you explain how to use the reporting feature?,web,free,51,0,0,0,low
+231,Feature question,Could you explain how to use the reporting feature?,web,free,51,0,0,0,low
+232,Payment charged twice,My card was charged twice for the same subscription payment. Please help as soon as possible!,chat,pro,93,1,0,1,medium
+233,Password reset,I need instructions for resetting my account password.,web,pro,54,0,0,0,low
+234,Update profile,I need help updating profile preferences in account settings.,chat,enterprise,61,0,0,0,medium
+235,Password reset,I need instructions for resetting my account password.,email,enterprise,54,0,0,0,medium
+236,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,email,pro,87,0,0,1,low
+237,Refund request,I need help with a refund for an unexpected payment. Please help as soon as possible!,web,pro,85,1,0,1,medium
+238,Refund request,I need help with a refund for an unexpected payment. Please help as soon as possible!,chat,pro,85,1,0,1,medium
+239,Refund request,I need help with a refund for an unexpected payment.,email,pro,52,1,0,0,medium
+240,Password reset,I need instructions for resetting my account password.,email,free,54,0,0,0,low
+241,Invoice issue,The invoice amount is incorrect and requires clarification. Please help as soon as possible!,web,pro,92,1,0,1,medium
+242,Critical application error,The application returns an error for every user in our account.,chat,pro,63,0,1,0,high
+243,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,web,enterprise,87,0,0,1,medium
+244,Payment charged twice,My card was charged twice for the same subscription payment.,chat,free,60,1,0,0,medium
+245,Update profile,I need help updating profile preferences in account settings. Please help as soon as possible!,email,enterprise,94,0,0,1,medium
+246,Password reset,I need instructions for resetting my account password.,web,pro,54,0,0,0,medium
+247,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,email,pro,87,0,0,1,low
+248,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,email,pro,87,0,0,1,low
+249,Feature question,Could you explain how to use the reporting feature?,web,free,51,0,0,0,low
+250,Feature question,Could you explain how to use the reporting feature? Please help as soon as possible!,chat,enterprise,84,0,0,1,medium
+251,Feature question,Could you explain how to use the reporting feature?,chat,pro,51,0,0,0,low
+252,Payment charged twice,My card was charged twice for the same subscription payment. Please help as soon as possible!,email,pro,93,1,0,1,medium
+253,Feature question,Could you explain how to use the reporting feature?,web,enterprise,51,0,0,0,medium
+254,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,email,free,68,0,1,0,high
+255,Payment charged twice,My card was charged twice for the same subscription payment.,chat,enterprise,60,1,0,0,high
+256,Refund request,I need help with a refund for an unexpected payment. Please help as soon as possible!,email,free,85,1,0,1,medium
+257,Payment charged twice,My card was charged twice for the same subscription payment.,web,pro,60,1,0,0,medium
+258,Refund request,I need help with a refund for an unexpected payment.,web,pro,52,1,0,0,medium
+259,Update profile,I need help updating profile preferences in account settings.,email,free,61,0,0,0,low
+260,Password reset,I need instructions for resetting my account password.,chat,free,54,0,0,0,low
+261,Login outage,Users cannot log in to the product and work is blocked.,web,pro,55,0,1,0,high
+262,Password reset,I need instructions for resetting my account password.,web,free,54,0,0,0,low
+263,Login outage,Users cannot log in to the product and work is blocked.,email,pro,55,0,1,0,high
+264,Update profile,I need help updating profile preferences in account settings. Please help as soon as possible!,web,enterprise,94,0,0,1,medium
+265,Invoice issue,The invoice amount is incorrect and requires clarification.,web,free,59,1,0,0,medium
+266,Feature question,Could you explain how to use the reporting feature?,web,free,51,0,0,0,low
+267,Password reset,I need instructions for resetting my account password.,email,pro,54,0,0,0,low
+268,Critical application error,The application returns an error for every user in our account. Please help as soon as possible!,chat,pro,96,0,1,1,high
+269,Invoice issue,The invoice amount is incorrect and requires clarification.,chat,pro,59,1,0,0,medium
+270,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,email,pro,68,0,1,0,high
+271,Refund request,I need help with a refund for an unexpected payment. Please help as soon as possible!,web,free,85,1,0,1,medium
+272,Payment charged twice,My card was charged twice for the same subscription payment. Please help as soon as possible!,web,free,93,1,0,1,medium
+273,Password reset,I need instructions for resetting my account password.,chat,enterprise,54,0,0,0,medium
+274,Refund request,I need help with a refund for an unexpected payment.,chat,enterprise,52,1,0,0,high
+275,Update profile,I need help updating profile preferences in account settings.,chat,pro,61,0,0,0,low
+276,Payment charged twice,My card was charged twice for the same subscription payment.,chat,pro,60,1,0,0,medium
+277,Invoice issue,The invoice amount is incorrect and requires clarification. Please help as soon as possible!,chat,free,92,1,0,1,medium
+278,Refund request,I need help with a refund for an unexpected payment.,chat,pro,52,1,0,0,high
+279,Feature question,Could you explain how to use the reporting feature?,web,pro,51,0,0,0,low
+280,Critical application error,The application returns an error for every user in our account. Please help as soon as possible!,web,pro,96,0,1,1,high
+281,Refund request,I need help with a refund for an unexpected payment. Please help as soon as possible!,web,free,85,1,0,1,medium
+282,Refund request,I need help with a refund for an unexpected payment.,email,pro,52,1,0,0,medium
+283,Update profile,I need help updating profile preferences in account settings. Please help as soon as possible!,email,free,94,0,0,1,low
+284,Update profile,I need help updating profile preferences in account settings.,chat,pro,61,0,0,0,low
+285,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,chat,free,87,0,0,1,low
+286,Feature question,Could you explain how to use the reporting feature?,email,pro,51,0,0,0,low
+287,Password reset,I need instructions for resetting my account password.,email,pro,54,0,0,0,low
+288,Critical application error,The application returns an error for every user in our account.,web,pro,63,0,1,0,high
+289,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,email,free,68,0,1,0,high
+290,Feature question,Could you explain how to use the reporting feature?,web,free,51,0,0,0,medium
+291,Password reset,I need instructions for resetting my account password.,chat,pro,54,0,0,0,low
+292,Login outage,Users cannot log in to the product and work is blocked.,web,free,55,0,1,0,high
+293,Critical application error,The application returns an error for every user in our account.,web,pro,63,0,1,0,high
+294,Payment charged twice,My card was charged twice for the same subscription payment.,email,pro,60,1,0,0,medium
+295,Update profile,I need help updating profile preferences in account settings.,chat,enterprise,61,0,0,0,medium
+296,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,web,enterprise,68,0,1,0,high
+297,Update profile,I need help updating profile preferences in account settings.,web,pro,61,0,0,0,low
+298,Critical application error,The application returns an error for every user in our account.,web,enterprise,63,0,1,0,high
+299,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,email,free,68,0,1,0,high
+300,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,chat,pro,87,0,0,1,low
+301,Password reset,I need instructions for resetting my account password.,chat,free,54,0,0,0,low
+302,Payment charged twice,My card was charged twice for the same subscription payment.,web,free,60,1,0,0,medium
+303,Invoice issue,The invoice amount is incorrect and requires clarification.,email,free,59,1,0,0,medium
+304,Feature question,Could you explain how to use the reporting feature?,email,pro,51,0,0,0,low
+305,Payment charged twice,My card was charged twice for the same subscription payment. Please help as soon as possible!,chat,free,93,1,0,1,medium
+306,Feature question,Could you explain how to use the reporting feature?,email,enterprise,51,0,0,0,medium
+307,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,chat,free,87,0,0,1,low
+308,Refund request,I need help with a refund for an unexpected payment.,chat,free,52,1,0,0,medium
+309,Update profile,I need help updating profile preferences in account settings. Please help as soon as possible!,web,free,94,0,0,1,low
+310,Password reset,I need instructions for resetting my account password.,web,free,54,0,0,0,low
+311,Refund request,I need help with a refund for an unexpected payment.,web,free,52,1,0,0,low
+312,Update profile,I need help updating profile preferences in account settings. Please help as soon as possible!,chat,pro,94,0,0,1,low
+313,Feature question,Could you explain how to use the reporting feature? Please help as soon as possible!,web,pro,84,0,0,1,low
+314,Refund request,I need help with a refund for an unexpected payment.,web,enterprise,52,1,0,0,high
+315,Invoice issue,The invoice amount is incorrect and requires clarification. Please help as soon as possible!,email,free,92,1,0,1,medium
+316,Refund request,I need help with a refund for an unexpected payment.,email,pro,52,1,0,0,medium
+317,Update profile,I need help updating profile preferences in account settings.,chat,enterprise,61,0,0,0,medium
+318,Invoice issue,The invoice amount is incorrect and requires clarification.,web,free,59,1,0,0,medium
+319,Login outage,Users cannot log in to the product and work is blocked.,web,free,55,0,1,0,high
+320,Password reset,I need instructions for resetting my account password.,web,free,54,0,0,0,low
+321,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,web,free,87,0,0,1,low
+322,Invoice issue,The invoice amount is incorrect and requires clarification.,web,pro,59,1,0,0,medium
+323,Invoice issue,The invoice amount is incorrect and requires clarification. Please help as soon as possible!,web,free,92,1,0,1,medium
+324,Critical application error,The application returns an error for every user in our account.,email,free,63,0,1,0,high
+325,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,web,free,87,0,0,1,low
+326,Invoice issue,The invoice amount is incorrect and requires clarification.,chat,pro,59,1,0,0,medium
+327,Feature question,Could you explain how to use the reporting feature?,web,free,51,0,0,0,low
+328,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,chat,pro,87,0,0,1,low
+329,Update profile,I need help updating profile preferences in account settings.,chat,pro,61,0,0,0,low
+330,Refund request,I need help with a refund for an unexpected payment.,chat,pro,52,1,0,0,medium
+331,Invoice issue,The invoice amount is incorrect and requires clarification.,web,pro,59,1,0,0,medium
+332,Payment charged twice,My card was charged twice for the same subscription payment.,chat,free,60,1,0,0,medium
+333,Password reset,I need instructions for resetting my account password.,chat,free,54,0,0,0,low
+334,Feature question,Could you explain how to use the reporting feature?,email,free,51,0,0,0,low
+335,Critical application error,The application returns an error for every user in our account. Please help as soon as possible!,email,pro,96,0,1,1,high
+336,Update profile,I need help updating profile preferences in account settings. Please help as soon as possible!,web,pro,94,0,0,1,low
+337,Feature question,Could you explain how to use the reporting feature?,web,enterprise,51,0,0,0,medium
+338,Refund request,I need help with a refund for an unexpected payment. Please help as soon as possible!,chat,free,85,1,0,1,medium
+339,Update profile,I need help updating profile preferences in account settings.,web,pro,61,0,0,0,low
+340,Payment charged twice,My card was charged twice for the same subscription payment.,email,enterprise,60,1,0,0,high
+341,Feature question,Could you explain how to use the reporting feature?,email,free,51,0,0,0,low
+342,Feature question,Could you explain how to use the reporting feature?,chat,enterprise,51,0,0,0,medium
+343,Password reset,I need instructions for resetting my account password.,chat,free,54,0,0,0,low
+344,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,chat,pro,87,0,0,1,low
+345,Invoice issue,The invoice amount is incorrect and requires clarification.,email,free,59,1,0,0,medium
+346,Password reset,I need instructions for resetting my account password.,chat,free,54,0,0,0,low
+347,Login outage,Users cannot log in to the product and work is blocked.,email,free,55,0,1,0,high
+348,Refund request,I need help with a refund for an unexpected payment.,chat,pro,52,1,0,0,medium
+349,Payment charged twice,My card was charged twice for the same subscription payment.,email,pro,60,1,0,0,medium
+350,Password reset,I need instructions for resetting my account password.,chat,pro,54,0,0,0,low
+351,Payment charged twice,My card was charged twice for the same subscription payment.,email,enterprise,60,1,0,0,high
+352,Feature question,Could you explain how to use the reporting feature?,chat,pro,51,0,0,0,low
+353,Update profile,I need help updating profile preferences in account settings.,email,pro,61,0,0,0,low
+354,Invoice issue,The invoice amount is incorrect and requires clarification.,web,free,59,1,0,0,medium
+355,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,email,pro,87,0,0,1,low
+356,Payment charged twice,My card was charged twice for the same subscription payment.,web,free,60,1,0,0,medium
+357,Payment charged twice,My card was charged twice for the same subscription payment.,chat,free,60,1,0,0,medium
+358,Password reset,I need instructions for resetting my account password.,chat,pro,54,0,0,0,low
+359,Password reset,I need instructions for resetting my account password.,email,free,54,0,0,0,low
+360,Update profile,I need help updating profile preferences in account settings.,chat,free,61,0,0,0,low
+361,Password reset,I need instructions for resetting my account password.,web,enterprise,54,0,0,0,medium
+362,Refund request,I need help with a refund for an unexpected payment.,chat,free,52,1,0,0,medium
+363,Login outage,Users cannot log in to the product and work is blocked.,email,free,55,0,1,0,high
+364,Update profile,I need help updating profile preferences in account settings.,email,pro,61,0,0,0,low
+365,Feature question,Could you explain how to use the reporting feature?,web,free,51,0,0,0,low
+366,Service is unavailable,Our team cannot access the dashboard and the service is unavailable. Please help as soon as possible!,web,pro,101,0,1,1,high
+367,Update profile,I need help updating profile preferences in account settings. Please help as soon as possible!,email,free,94,0,0,1,high
+368,Update profile,I need help updating profile preferences in account settings.,email,pro,61,0,0,0,low
+369,Payment charged twice,My card was charged twice for the same subscription payment.,email,pro,60,1,0,0,medium
+370,Feature question,Could you explain how to use the reporting feature?,web,pro,51,0,0,0,low
+371,Payment charged twice,My card was charged twice for the same subscription payment.,web,pro,60,1,0,0,medium
+372,Password reset,I need instructions for resetting my account password.,web,enterprise,54,0,0,0,medium
+373,Refund request,I need help with a refund for an unexpected payment.,web,pro,52,1,0,0,medium
+374,Payment charged twice,My card was charged twice for the same subscription payment.,chat,free,60,1,0,0,medium
+375,Feature question,Could you explain how to use the reporting feature?,web,free,51,0,0,0,medium
+376,Password reset,I need instructions for resetting my account password.,web,free,54,0,0,0,low
+377,Feature question,Could you explain how to use the reporting feature?,chat,free,51,0,0,0,low
+378,Invoice issue,The invoice amount is incorrect and requires clarification.,web,pro,59,1,0,0,medium
+379,Password reset,I need instructions for resetting my account password.,web,pro,54,0,0,0,low
+380,Payment charged twice,My card was charged twice for the same subscription payment.,email,enterprise,60,1,0,0,high
+381,Feature question,Could you explain how to use the reporting feature?,email,pro,51,0,0,0,low
+382,Refund request,I need help with a refund for an unexpected payment.,chat,free,52,1,0,0,medium
+383,Invoice issue,The invoice amount is incorrect and requires clarification.,chat,free,59,1,0,0,medium
+384,Feature question,Could you explain how to use the reporting feature?,email,free,51,0,0,0,low
+385,Payment charged twice,My card was charged twice for the same subscription payment.,email,free,60,1,0,0,medium
+386,Payment charged twice,My card was charged twice for the same subscription payment.,email,free,60,1,0,0,medium
+387,Invoice issue,The invoice amount is incorrect and requires clarification.,web,free,59,1,0,0,medium
+388,Password reset,I need instructions for resetting my account password.,chat,free,54,0,0,0,low
+389,Critical application error,The application returns an error for every user in our account.,chat,free,63,0,1,0,high
+390,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,email,pro,87,0,0,1,low
+391,Service is unavailable,Our team cannot access the dashboard and the service is unavailable.,chat,free,68,0,1,0,low
+392,Critical application error,The application returns an error for every user in our account.,chat,free,63,0,1,0,high
+393,Feature question,Could you explain how to use the reporting feature? Please help as soon as possible!,web,free,84,0,0,1,low
+394,Critical application error,The application returns an error for every user in our account.,web,free,63,0,1,0,high
+395,Update profile,I need help updating profile preferences in account settings.,email,enterprise,61,0,0,0,medium
+396,Feature question,Could you explain how to use the reporting feature?,chat,free,51,0,0,0,low
+397,Invoice issue,The invoice amount is incorrect and requires clarification.,email,enterprise,59,1,0,0,high
+398,Password reset,I need instructions for resetting my account password. Please help as soon as possible!,web,pro,87,0,0,1,low
+399,Update profile,I need help updating profile preferences in account settings. Please help as soon as possible!,web,free,94,0,0,1,low
+400,Refund request,I need help with a refund for an unexpected payment.,web,enterprise,52,1,0,0,high

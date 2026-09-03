@@ -31,7 +31,11 @@ def init_db() -> None:
             """
         )
 
-def create_ticket(ticket: TicketCreate) -> dict[str, Any]:
+
+def create_ticket(
+    ticket: TicketCreate,
+    predicted_priority: str,
+) -> dict[str, Any]:
     created_at = datetime.now(UTC).isoformat()
 
     with get_connection() as connection:
@@ -52,7 +56,7 @@ def create_ticket(ticket: TicketCreate) -> dict[str, Any]:
                 ticket.description,
                 ticket.channel,
                 ticket.customer_tier,
-                None,
+                predicted_priority,
                 created_at,
             ),
         )

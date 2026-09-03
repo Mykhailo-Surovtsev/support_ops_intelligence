@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, status
+from fastapi import FastAPI, HTTPException, status
 from app.database import create_ticket, init_db
+from app.ml.priority_model import predict_priority
 from app.schemas import (
     HealthResponse,
     TicketCreate,
@@ -14,7 +15,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Support Ops Intelligence",
-    version="0.1.0",
+    version="0.2.0",
     lifespan=lifespan,
 )
 
@@ -28,5 +29,17 @@ def health() -> HealthResponse:
     status_code=status.HTTP_201_CREATED,
 )
 def create_ticket_endpoint(ticket: TicketCreate) -> TicketResponse:
-    stored_ticket = create_ticket(ticket)
+    try:
+        predicted_priority = predict_priority(ticket)
+    except RuntimeError as error:
+        raise HTTPException(
+            status_code=503,
+            detail=str(error),
+        ) from error
+
+    stored_ticket = create_ticket(
+        ticket,
+        predicted_priority,
+    )
+
     return TicketResponse(**stored_ticket)
