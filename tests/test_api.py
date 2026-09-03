@@ -71,3 +71,40 @@ def test_create_ticket_returns_503_when_model_is_missing() -> None:
         main.predict_priority = original_predict_priority
 
     assert response.status_code == 503
+
+def test_workload_forecast(monkeypatch):
+    monkeypatch.setattr(
+        main,
+        "predict_ticket_volume",
+        lambda **kwargs: 47,
+    )
+
+    client = TestClient(app)
+
+    response = client.post(
+        "/forecasts/workload",
+        json={
+            "day_of_week": "Monday",
+            "active_customers": 1500,
+            "marketing_campaign": True,
+            "incident_active": False,
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.json() == {"predicted_ticket_count": 47}
+
+def test_workload_forecast_rejects_invalid_day():
+    client = TestClient(app)
+
+    response = client.post(
+        "/forecasts/workload",
+        json={
+            "day_of_week": "Funday",
+            "active_customers": 1500,
+            "marketing_campaign": False,
+            "incident_active": False,
+        },
+    )
+
+    assert response.status_code == 422
