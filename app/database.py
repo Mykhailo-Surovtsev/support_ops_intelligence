@@ -1,5 +1,8 @@
 import sqlite3
+from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any
+from app.schemas import TicketCreate
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATABASE_PATH = PROJECT_ROOT / "data" / "support_ops.db"
@@ -27,3 +30,37 @@ def init_db() -> None:
             )
             """
         )
+
+def create_ticket(ticket: TicketCreate) -> dict[str, Any]:
+    created_at = datetime.now(UTC).isoformat()
+
+    with get_connection() as connection:
+        cursor = connection.execute(
+            """
+            INSERT INTO tickets (
+                subject,
+                description,
+                channel,
+                customer_tier,
+                predicted_priority,
+                created_at
+            )
+            VALUES (?, ?, ?, ?, ?, ?)
+            """,
+            (
+                ticket.subject,
+                ticket.description,
+                ticket.channel,
+                ticket.customer_tier,
+                None,
+                created_at,
+            ),
+        )
+        connection.commit()
+
+        row = connection.execute(
+            "SELECT * FROM tickets WHERE id = ?",
+            (cursor.lastrowid,),
+        ).fetchone()
+
+    return dict(row)

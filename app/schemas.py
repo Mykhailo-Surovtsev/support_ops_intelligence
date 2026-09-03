@@ -17,3 +17,8 @@ class TicketCreate(BaseModel):
     )
     channel: Literal["email", "chat", "web"]
     customer_tier: Literal["free", "pro", "enterprise"]
+
+class TicketResponse(TicketCreate):
+    id: int
+    predicted_priority: str | None
+    created_at: str

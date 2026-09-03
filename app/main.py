@@ -1,7 +1,11 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
-from app.database import init_db
-from app.schemas import HealthResponse
+from fastapi import FastAPI, status
+from app.database import create_ticket, init_db
+from app.schemas import (
+    HealthResponse,
+    TicketCreate,
+    TicketResponse,
+)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -17,3 +21,12 @@ app = FastAPI(
 @app.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
     return HealthResponse(status="ok")
+
+@app.post(
+    "/tickets",
+    response_model=TicketResponse,
+    status_code=status.HTTP_201_CREATED,
+)
+def create_ticket_endpoint(ticket: TicketCreate) -> TicketResponse:
+    stored_ticket = create_ticket(ticket)
+    return TicketResponse(**stored_ticket)
