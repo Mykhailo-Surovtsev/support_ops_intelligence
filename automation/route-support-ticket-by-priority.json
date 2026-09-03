@@ -1,0 +1,177 @@
+{
+  "name": "Route support ticket by priority",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "support-ticket",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "48567c7a-4a93-4fe4-8c46-40d223996493",
+      "name": "Webhook",
+      "webhookId": "c3efc328-546c-42b3-9c9f-4e3cb8a7322e"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8002/tickets",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "subject",
+              "value": "={{ $json.body.subject }}"
+            },
+            {
+              "name": "description",
+              "value": "={{ $json.body.description }}"
+            },
+            {
+              "name": "channel",
+              "value": "={{ $json.body.channel }}"
+            },
+            {
+              "name": "customer_tier",
+              "value": "={{ $json.body.customer_tier }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        144,
+        48
+      ],
+      "id": "3f8ffe9a-6bb9-4ab3-b5c3-30b554901208",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "1d15d6e0-bc25-43db-8ddf-32c2a899a442",
+              "leftValue": "={{ $json.predicted_priority }}",
+              "rightValue": "high",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        288,
+        96
+      ],
+      "id": "72e05ac5-e6fd-4475-b4b3-52614c6a7a5d",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": 202
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        512,
+        0
+      ],
+      "id": "a20eea53-f518-46c4-b385-85884d5cb3d4",
+      "name": "Respond — urgent triage"
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": 201
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        512,
+        192
+      ],
+      "id": "cc5e8486-64da-4f2c-b432-b08298721147",
+      "name": "Respond — standard triage"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Respond — urgent triage",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond — standard triage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "5447c48c-e138-4ff0-a95c-b074360a59a4",
+  "meta": {
+    "instanceId": "7e42f24c63409e9b3421987c65a037e92f5e3ea30eb473aa73f5095697727941"
+  },
+  "nodeGroups": [],
+  "id": "u9UEgLX4BDsLWfkA",
+  "tags": []
+}
