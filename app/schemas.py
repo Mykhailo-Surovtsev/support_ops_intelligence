@@ -39,3 +39,11 @@ class WorkloadForecastRequest(BaseModel):
 
 class WorkloadForecastResponse(BaseModel):
     predicted_ticket_count: int = Field(ge=0)
+
+class TicketClusterRequest(BaseModel):
+    subject: str = Field(min_length=3, max_length=160)
+    description: str = Field(min_length=10, max_length=5000)
+
+class TicketClusterResponse(BaseModel):
+    cluster_id: int = Field(ge=0)
+    top_terms: list[str]

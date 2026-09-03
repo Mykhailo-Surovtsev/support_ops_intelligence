@@ -1,30 +1,39 @@
 from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, HTTPException, status
+
 from app.database import create_ticket, init_db
 from app.ml.priority_model import predict_priority
+from app.ml.topic_clustering import predict_ticket_cluster
 from app.ml.workload_model import predict_ticket_volume
 from app.schemas import (
     HealthResponse,
+    TicketClusterRequest,
+    TicketClusterResponse,
     TicketCreate,
     TicketResponse,
     WorkloadForecastRequest,
     WorkloadForecastResponse,
 )
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
     yield
 
+
 app = FastAPI(
     title="Support Ops Intelligence",
-    version="0.3.0",
+    version="0.4.0",
     lifespan=lifespan,
 )
+
 
 @app.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
     return HealthResponse(status="ok")
+
 
 @app.post(
     "/tickets",
@@ -42,6 +51,7 @@ def create_ticket_endpoint(ticket: TicketCreate) -> TicketResponse:
 
     stored_ticket = create_ticket(ticket, predicted_priority)
     return TicketResponse(**stored_ticket)
+
 
 @app.post(
     "/forecasts/workload",
@@ -66,3 +76,24 @@ def forecast_workload(
     return WorkloadForecastResponse(
         predicted_ticket_count=predicted_ticket_count,
     )
+
+
+@app.post(
+    "/clusters/ticket",
+    response_model=TicketClusterResponse,
+)
+def cluster_ticket(
+    request: TicketClusterRequest,
+) -> TicketClusterResponse:
+    try:
+        result = predict_ticket_cluster(
+            request.subject,
+            request.description,
+        )
+    except RuntimeError as error:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=str(error),
+        ) from error
+
+    return TicketClusterResponse(**result)

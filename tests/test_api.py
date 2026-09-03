@@ -108,3 +108,29 @@ def test_workload_forecast_rejects_invalid_day():
     )
 
     assert response.status_code == 422
+
+def test_ticket_clustering(monkeypatch):
+    monkeypatch.setattr(
+        main,
+        "predict_ticket_cluster",
+        lambda subject, description: {
+            "cluster_id": 0,
+            "top_terms": ["payment", "refund", "charged"],
+        },
+    )
+
+    client = TestClient(app)
+
+    response = client.post(
+        "/clusters/ticket",
+        json={
+            "subject": "Refund charged twice",
+            "description": "I was charged twice and need a refund.",
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.json() == {
+        "cluster_id": 0,
+        "top_terms": ["payment", "refund", "charged"],
+    }
