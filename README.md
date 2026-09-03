@@ -233,6 +233,15 @@ A low-priority test payload is available in:
 examples/n8n_low_ticket.json
 ```
 
+## Run the full automation stack
+
+The Compose stack starts the FastAPI service and n8n together.
+
+Create the persistent n8n volume once:
+
+```powershell
+docker volume create n8n_data
+
 ## Project structure
 
 ```text

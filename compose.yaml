@@ -1,0 +1,30 @@
+services:
+  api:
+    build: .
+    image: support-ops-intelligence:0.1.0
+    container_name: support-ops-api
+    ports:
+      - "127.0.0.1:8002:8002"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:2.37.9
+    container_name: n8n-local
+    ports:
+      - "127.0.0.1:5678:5678"
+    environment:
+      N8N_SECURE_COOKIE: "false"
+      GENERIC_TIMEZONE: Europe/Warsaw
+      TZ: Europe/Warsaw
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  n8n_data:
+    external: true

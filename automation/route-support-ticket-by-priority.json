@@ -21,7 +21,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "http://host.docker.internal:8002/tickets",
+        "url": "http://api:8002/tickets",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
