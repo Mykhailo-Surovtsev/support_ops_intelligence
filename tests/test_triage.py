@@ -1,7 +1,6 @@
 from app.schemas import TicketCreate
 from app.triage import queue_for_priority, triage_ticket
 
-
 def make_ticket(subject: str, description: str) -> TicketCreate:
     return TicketCreate(
         external_id="event_1000",
@@ -10,7 +9,6 @@ def make_ticket(subject: str, description: str) -> TicketCreate:
         description=description,
         channel="email",
     )
-
 
 def test_critical_rule_has_priority_over_other_text() -> None:
     result = triage_ticket(
@@ -23,7 +21,6 @@ def test_critical_rule_has_priority_over_other_text() -> None:
     assert result.priority == "high"
     assert result.source == "rules"
     assert queue_for_priority(result.priority, "") == "urgent"
-
 
 def test_billing_rule_routes_to_billing_queue() -> None:
     ticket = make_ticket(

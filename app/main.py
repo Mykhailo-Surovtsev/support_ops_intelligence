@@ -1,10 +1,8 @@
 import hmac
 import os
 from contextlib import asynccontextmanager
-
 from fastapi import Depends, FastAPI, Header, HTTPException, Response, status
 from fastapi.responses import RedirectResponse
-
 from app.crm import sync_ticket_to_crm
 from app.database import (
     check_database,
@@ -16,19 +14,16 @@ from app.database import (
 from app.schemas import HealthResponse, ReadyResponse, TicketCreate, TicketResponse
 from app.triage import is_openai_enabled, queue_for_priority, triage_ticket
 
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
     yield
-
 
 app = FastAPI(
     title="Support Automation Hub",
     version="1.0.0",
     lifespan=lifespan,
 )
-
 
 def verify_internal_api_key(
     x_internal_api_key: str | None = Header(default=None),
@@ -43,17 +38,14 @@ def verify_internal_api_key(
             detail="Invalid internal API key.",
         )
 
-
 @app.get("/", include_in_schema=False)
 def root() -> RedirectResponse:
     """Give a beginner-friendly browser entry point."""
     return RedirectResponse(url="/docs")
 
-
 @app.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
     return HealthResponse(status="ok")
-
 
 @app.get("/ready", response_model=ReadyResponse)
 def ready() -> ReadyResponse:
@@ -69,7 +61,6 @@ def ready() -> ReadyResponse:
         status="ready",
         triage_provider="openai" if is_openai_enabled() else "rules",
     )
-
 
 @app.post(
     "/tickets",

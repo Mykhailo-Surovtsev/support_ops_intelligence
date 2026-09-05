@@ -1,11 +1,9 @@
 """Explainable ticket triage with an optional OpenAI provider."""
-
 import hashlib
 import json
 import logging
 import os
 from dataclasses import dataclass
-
 from app.schemas import (
     TicketCreate,
     TicketPriority,
@@ -18,7 +16,6 @@ try:
     from openai import OpenAI
 except ImportError:  # Rules mode works before the optional SDK is installed.
     OpenAI = None  # type: ignore[assignment,misc]
-
 
 logger = logging.getLogger(__name__)
 CRITICAL_TERMS = (
@@ -49,13 +46,11 @@ TRIAGE_SCHEMA = {
     "required": ["priority", "reason"],
 }
 
-
 @dataclass(frozen=True)
 class TriageResult:
     priority: TicketPriority
     reason: str
     source: TriageSource
-
 
 def is_openai_enabled() -> bool:
     return bool(
@@ -64,14 +59,12 @@ def is_openai_enabled() -> bool:
         and os.getenv("OPENAI_MODEL")
     )
 
-
 def queue_for_priority(priority: TicketPriority, text: str) -> TicketQueue:
     if priority == "high":
         return "urgent"
     if any(term in text for term in BILLING_TERMS):
         return "billing"
     return "general"
-
 
 def triage_ticket(ticket: TicketCreate) -> TriageResult:
     text = f"{ticket.subject} {ticket.description}".lower()
@@ -90,7 +83,6 @@ def triage_ticket(ticket: TicketCreate) -> TriageResult:
 
     return _rules_fallback(text)
 
-
 def _critical_policy(text: str) -> TriageResult | None:
     for term in CRITICAL_TERMS:
         if term in text:
@@ -100,7 +92,6 @@ def _critical_policy(text: str) -> TriageResult | None:
                 source="rules",
             )
     return None
-
 
 def _rules_fallback(text: str) -> TriageResult:
     for term in BILLING_TERMS:
@@ -115,7 +106,6 @@ def _rules_fallback(text: str) -> TriageResult:
         reason="No urgent or billing rule matched.",
         source="rules",
     )
-
 
 def _triage_with_openai(ticket: TicketCreate) -> TriageResult:
     if OpenAI is None:

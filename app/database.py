@@ -2,7 +2,6 @@ import sqlite3
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
-
 from app.schemas import (
     CrmSyncStatus,
     TicketCreate,
@@ -14,7 +13,6 @@ from app.schemas import (
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATABASE_PATH = PROJECT_ROOT / "data" / "support_ops.db"
 
-
 def get_connection() -> sqlite3.Connection:
     DATABASE_PATH.parent.mkdir(exist_ok=True)
     connection = sqlite3.connect(DATABASE_PATH, timeout=5)
@@ -22,7 +20,6 @@ def get_connection() -> sqlite3.Connection:
     connection.execute("PRAGMA busy_timeout = 5000")
     connection.execute("PRAGMA journal_mode = WAL")
     return connection
-
 
 def init_db() -> None:
     with get_connection() as connection:
@@ -51,7 +48,6 @@ def check_database() -> None:
     with get_connection() as connection:
         connection.execute("SELECT 1").fetchone()
 
-
 def find_ticket(external_id: str) -> dict[str, Any] | None:
     with get_connection() as connection:
         row = connection.execute(
@@ -59,7 +55,6 @@ def find_ticket(external_id: str) -> dict[str, Any] | None:
             (external_id,),
         ).fetchone()
     return dict(row) if row else None
-
 
 def create_ticket(
     ticket: TicketCreate,
@@ -108,7 +103,6 @@ def create_ticket(
             if row is None:
                 raise
             return dict(row), False
-
 
 def update_crm_sync_status(
     ticket_id: int,

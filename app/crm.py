@@ -1,15 +1,11 @@
-"""Small HTTP adapter for a CRM or another support platform."""
-
+"""HTTP adapter for a CRM."""
 import logging
 import os
-
 import httpx
-
 from app.schemas import CrmSyncStatus, TicketCreate, TicketQueue
 from app.triage import TriageResult
 
 logger = logging.getLogger(__name__)
-
 
 def sync_ticket_to_crm(
     ticket: TicketCreate,

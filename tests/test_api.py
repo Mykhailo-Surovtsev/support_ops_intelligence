@@ -1,9 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
-
 from app import crm, database
 from app.main import app
-
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
@@ -16,7 +14,6 @@ def client(tmp_path, monkeypatch):
     with TestClient(app) as test_client:
         yield test_client
 
-
 def ticket_payload(external_id: str = "event_0001") -> dict[str, str]:
     return {
         "external_id": external_id,
@@ -25,7 +22,6 @@ def ticket_payload(external_id: str = "event_0001") -> dict[str, str]:
         "description": "Customers cannot access the dashboard.",
         "channel": "web",
     }
-
 
 def test_health_and_readiness(client: TestClient) -> None:
     root_response = client.get("/", follow_redirects=False)
@@ -40,7 +36,6 @@ def test_health_and_readiness(client: TestClient) -> None:
         "triage_provider": "rules",
     }
 
-
 def test_creates_and_routes_urgent_ticket(client: TestClient) -> None:
     response = client.post("/tickets", json=ticket_payload())
     ticket = response.json()
@@ -52,7 +47,6 @@ def test_creates_and_routes_urgent_ticket(client: TestClient) -> None:
     assert ticket["crm_sync_status"] == "not_configured"
     assert ticket["duplicate"] is False
 
-
 def test_idempotency_returns_the_original_ticket(client: TestClient) -> None:
     first_response = client.post("/tickets", json=ticket_payload("event_0002"))
     second_response = client.post("/tickets", json=ticket_payload("event_0002"))
@@ -62,7 +56,6 @@ def test_idempotency_returns_the_original_ticket(client: TestClient) -> None:
     assert second_response.json()["ticket_id"] == first_response.json()["ticket_id"]
     assert second_response.json()["duplicate"] is True
 
-
 def test_rejects_blank_ticket_text(client: TestClient) -> None:
     payload = ticket_payload("event_0003")
     payload["subject"] = "   "
@@ -70,7 +63,6 @@ def test_rejects_blank_ticket_text(client: TestClient) -> None:
     response = client.post("/tickets", json=payload)
 
     assert response.status_code == 422
-
 
 def test_protects_internal_api_when_a_secret_is_configured(
     client,
@@ -87,7 +79,6 @@ def test_protects_internal_api_when_a_secret_is_configured(
 
     assert rejected_response.status_code == 401
     assert accepted_response.status_code == 201
-
 
 def test_records_successful_crm_sync(client, monkeypatch) -> None:
     sent_payload: dict[str, object] = {}

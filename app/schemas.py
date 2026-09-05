@@ -1,6 +1,5 @@
 from datetime import datetime
 from typing import Literal
-
 from pydantic import BaseModel, Field, field_validator
 
 TicketPriority = Literal["low", "medium", "high"]
@@ -8,15 +7,12 @@ TicketQueue = Literal["general", "billing", "urgent"]
 TriageSource = Literal["rules", "openai"]
 CrmSyncStatus = Literal["pending", "synced", "failed", "not_configured"]
 
-
 class HealthResponse(BaseModel):
     status: Literal["ok"]
-
 
 class ReadyResponse(BaseModel):
     status: Literal["ready"]
     triage_provider: Literal["rules", "openai"]
-
 
 class TicketCreate(BaseModel):
     """The stable request contract used by the webhook and the API."""
@@ -45,11 +41,9 @@ class TicketCreate(BaseModel):
             raise ValueError("Text must contain non-whitespace characters.")
         return cleaned_value
 
-
 class TriageDecision(BaseModel):
     priority: TicketPriority
     reason: str = Field(min_length=3, max_length=240)
-
 
 class TicketResponse(BaseModel):
     ticket_id: int
