@@ -151,21 +151,3 @@ python -m pytest -q
 ~~~
 
 The tests use a temporary SQLite database and cover readiness, high-priority routing, idempotency, validation, internal-key protection, CRM status, and safety rules.
-
-## How to present this project in an interview
-
-Start with the business problem: duplicate webhooks and slow manual routing make a support queue unreliable.
-
-Then explain the trade-offs:
-
-1. Critical cases use deterministic rules before AI because false negatives are costly.
-2. The ticket is persisted before the CRM call so an integration outage does not lose work.
-3. The idempotency key makes webhook retries safe.
-4. AI is optional and structured; it improves non-critical classification but cannot break the intake path.
-
-## Next production steps
-
-- Replace SQLite with PostgreSQL for multiple API instances.
-- Add an outbox table and retry worker for failed CRM syncs.
-- Add webhook signature validation, rate limits, alerting, and structured logs.
-- Evaluate AI triage against anonymized, human-reviewed historical tickets before enabling automated routing.
