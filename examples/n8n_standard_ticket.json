@@ -1,0 +1,7 @@
+{
+  "external_id": "demo_ticket_001",
+  "customer_id": "customer_123",
+  "subject": "How do I change my profile?",
+  "description": "I need help finding the profile settings in the application.",
+  "channel": "web"
+}

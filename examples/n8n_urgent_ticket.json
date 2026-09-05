@@ -1,0 +1,7 @@
+{
+  "external_id": "demo_ticket_002",
+  "customer_id": "customer_456",
+  "subject": "Service outage",
+  "description": "Our team cannot access the dashboard and the service is unavailable.",
+  "channel": "email"
+}

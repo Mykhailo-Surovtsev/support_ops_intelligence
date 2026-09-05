@@ -10,13 +10,7 @@ RUN python -m pip install --no-cache-dir --upgrade pip && \
     python -m pip install --no-cache-dir -r requirements.txt
 
 COPY app ./app
-COPY data/training_tickets.csv ./data/training_tickets.csv
-COPY data/workload_history.csv ./data/workload_history.csv
-
-RUN mkdir -p models data && \
-    python -m app.ml.priority_model && \
-    python -m app.ml.workload_model && \
-    python -m app.ml.topic_clustering
+COPY data ./data
 
 EXPOSE 8002
 

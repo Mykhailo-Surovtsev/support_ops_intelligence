@@ -1,6 +1,0 @@
-{
-  "subject": "Service outage",
-  "description": "Customers cannot access the dashboard and the entire team is blocked.",
-  "channel": "web",
-  "customer_tier": "enterprise"
-}

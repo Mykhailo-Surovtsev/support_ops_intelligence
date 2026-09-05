@@ -3,5 +3,7 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .idea/
+.env
 data/support_ops.db
-models/*.joblib
+data/support_ops.db-shm
+data/support_ops.db-wal
