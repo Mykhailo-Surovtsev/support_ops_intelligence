@@ -128,6 +128,4 @@ Incoming ticket → Validate → Check external_id
                                     n8n standard or urgent response
 ```
 
-**Stack:** Python 3.14, FastAPI, Pydantic, SQLite, n8n, optional OpenAI integration, Docker Compose, pytest, GitHub Actions.
-
 The current version uses deterministic routing rules with optional AI classification. It does not require model training. The repository retains the original `support_ops_intelligence` name.
