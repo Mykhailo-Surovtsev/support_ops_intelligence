@@ -115,32 +115,6 @@ On its first submission, expect **HTTP 201**, `priority: medium`, `queue: billin
 
 These checks demonstrate intake, explainable routing, persistence, and duplicate protection. The `queue` field records the routing decision; it does not mean a human agent has been notified.
 
-### Demo Checklist
-
-With the default rules mode and fresh example IDs, the results should be:
-
-| Check | HTTP status | Key result |
-| --- | --- | --- |
-| Readiness | `200` | `status: ready`, `triage_provider: rules` |
-| First urgent submission | `201` | `priority: high`, `queue: urgent`, `duplicate: false` |
-| Same urgent submission again | `200` | Same `ticket_id`, `duplicate: true` |
-| First standard submission | `201` | `priority: low`, `queue: general` |
-| First billing submission | `201` | `priority: medium`, `queue: billing` |
-
-An empty CRM configuration should produce `crm_sync_status: not_configured`. If an example ID was used during an earlier review, change it to a new value to repeat a first-submission check.
-
-
-## Stop and Restart
-
-From the project folder:
-
-```shell
-docker compose down
-```
-
-This removes the project's containers while preserving the SQLite database in `data/support_ops.db` and the n8n named volume. Next time, run `docker compose up --detach api` for the API or `docker compose up --detach` for the full stack.
-
-n8n's volume is scoped to the Compose project. Restart from the same project folder to reuse the same local account and saved workflows.
 
 ## How It Works
 
