@@ -8,6 +8,7 @@ services:
     volumes:
       - ./data:/app/data
     environment:
+      APP_ENV: ${APP_ENV:-demo}
       API_SHARED_SECRET: ${API_SHARED_SECRET:-}
       CRM_WEBHOOK_URL: ${CRM_WEBHOOK_URL:-}
       CRM_API_KEY: ${CRM_API_KEY:-}
@@ -21,14 +22,12 @@ services:
     ports:
       - "127.0.0.1:5678:5678"
     environment:
-      N8N_SECURE_COOKIE: "false"
-      # The imported workflow reads only API_SHARED_SECRET to authenticate to the
-      # internal FastAPI service. n8n 2.x blocks $env expressions unless this
-      # is explicitly enabled.
-      N8N_BLOCK_ENV_ACCESS_IN_NODE: "false"
+      N8N_SECURE_COOKIE: ${N8N_SECURE_COOKIE:-false}
+      # Keep workflow expressions isolated from container secrets. For a protected
+      # API, configure an n8n HTTP Header Auth credential after importing the flow.
+      N8N_BLOCK_ENV_ACCESS_IN_NODE: "true"
       GENERIC_TIMEZONE: Europe/Warsaw
       TZ: Europe/Warsaw
-      API_SHARED_SECRET: ${API_SHARED_SECRET:-}
     volumes:
       - n8n_data:/home/node/.n8n
     depends_on:

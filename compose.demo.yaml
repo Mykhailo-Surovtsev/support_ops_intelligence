@@ -1,0 +1,11 @@
+# Local-only override for a safe, reproducible demo.
+# It never reads keys from .env and prevents sample tickets reaching external services.
+services:
+  api:
+    environment:
+      APP_ENV: demo
+      API_SHARED_SECRET: ""
+      OPENAI_API_KEY: ""
+      OPENAI_MODEL: ""
+      CRM_WEBHOOK_URL: ""
+      CRM_API_KEY: ""

@@ -42,6 +42,20 @@ def init_db() -> None:
             )
             """
         )
+        connection.execute(
+            """
+            CREATE TABLE IF NOT EXISTS crm_delivery_outbox (
+                ticket_id INTEGER PRIMARY KEY,
+                delivery_status TEXT NOT NULL
+                    CHECK (delivery_status IN ('pending', 'retry', 'delivered', 'dead_letter')),
+                attempt_count INTEGER NOT NULL DEFAULT 0,
+                next_attempt_at TEXT NOT NULL,
+                last_error TEXT,
+                updated_at TEXT NOT NULL,
+                FOREIGN KEY (ticket_id) REFERENCES support_tickets(ticket_id)
+            )
+            """
+        )
 
 
 def check_database() -> None:
@@ -121,3 +135,136 @@ def update_crm_sync_status(
     if row is None:
         raise RuntimeError(f"Ticket {ticket_id} does not exist.")
     return dict(row)
+
+
+def enqueue_crm_delivery(ticket_id: int) -> None:
+    now = datetime.now(UTC).isoformat()
+    with get_connection() as connection:
+        connection.execute(
+            """
+            INSERT INTO crm_delivery_outbox (
+                ticket_id, delivery_status, attempt_count, next_attempt_at, updated_at
+            )
+            VALUES (?, 'pending', 0, ?, ?)
+            ON CONFLICT(ticket_id) DO NOTHING
+            """,
+            (ticket_id, now, now),
+        )
+
+
+def get_due_crm_deliveries(
+    *,
+    limit: int,
+    include_dead_letters: bool = False,
+) -> list[dict[str, Any]]:
+    now = datetime.now(UTC).isoformat()
+    statuses = "'pending', 'retry'"
+    if include_dead_letters:
+        statuses += ", 'dead_letter'"
+
+    with get_connection() as connection:
+        rows = connection.execute(
+            f"""
+            SELECT support_tickets.*, crm_delivery_outbox.attempt_count
+            FROM crm_delivery_outbox
+            JOIN support_tickets
+              ON support_tickets.ticket_id = crm_delivery_outbox.ticket_id
+            WHERE crm_delivery_outbox.delivery_status IN ({statuses})
+              AND (
+                crm_delivery_outbox.next_attempt_at <= ?
+                OR crm_delivery_outbox.delivery_status = 'dead_letter'
+              )
+            ORDER BY crm_delivery_outbox.updated_at ASC
+            LIMIT ?
+            """,
+            (now, limit),
+        ).fetchall()
+    return [dict(row) for row in rows]
+
+
+def make_crm_deliveries_due(*, include_dead_letters: bool) -> None:
+    now = datetime.now(UTC).isoformat()
+    statuses = "'retry'"
+    if include_dead_letters:
+        statuses += ", 'dead_letter'"
+    with get_connection() as connection:
+        connection.execute(
+            f"""
+            UPDATE crm_delivery_outbox
+            SET next_attempt_at = ?, updated_at = ?
+            WHERE delivery_status IN ({statuses})
+            """,
+            (now, now),
+        )
+
+
+def record_crm_delivery_success(ticket_id: int) -> dict[str, Any]:
+    now = datetime.now(UTC).isoformat()
+    with get_connection() as connection:
+        connection.execute(
+            """
+            UPDATE crm_delivery_outbox
+            SET delivery_status = 'delivered', updated_at = ?, last_error = NULL
+            WHERE ticket_id = ?
+            """,
+            (now, ticket_id),
+        )
+        connection.execute(
+            "UPDATE support_tickets SET crm_sync_status = 'synced' WHERE ticket_id = ?",
+            (ticket_id,),
+        )
+        row = connection.execute(
+            "SELECT * FROM support_tickets WHERE ticket_id = ?",
+            (ticket_id,),
+        ).fetchone()
+    if row is None:
+        raise RuntimeError(f"Ticket {ticket_id} does not exist.")
+    return dict(row)
+
+
+def record_crm_delivery_failure(
+    ticket_id: int,
+    *,
+    error: str,
+    max_attempts: int,
+    retry_delay_seconds: int,
+) -> dict[str, Any]:
+    now = datetime.now(UTC)
+    with get_connection() as connection:
+        row = connection.execute(
+            "SELECT attempt_count FROM crm_delivery_outbox WHERE ticket_id = ?",
+            (ticket_id,),
+        ).fetchone()
+        if row is None:
+            raise RuntimeError(f"CRM outbox entry for ticket {ticket_id} does not exist.")
+        attempts = int(row["attempt_count"]) + 1
+        terminal = attempts >= max_attempts
+        next_attempt = now.timestamp() + retry_delay_seconds
+        next_attempt_at = datetime.fromtimestamp(next_attempt, UTC).isoformat()
+        connection.execute(
+            """
+            UPDATE crm_delivery_outbox
+            SET delivery_status = ?, attempt_count = ?, next_attempt_at = ?,
+                last_error = ?, updated_at = ?
+            WHERE ticket_id = ?
+            """,
+            (
+                "dead_letter" if terminal else "retry",
+                attempts,
+                next_attempt_at,
+                error[:500],
+                now.isoformat(),
+                ticket_id,
+            ),
+        )
+        connection.execute(
+            "UPDATE support_tickets SET crm_sync_status = 'failed' WHERE ticket_id = ?",
+            (ticket_id,),
+        )
+        ticket = connection.execute(
+            "SELECT * FROM support_tickets WHERE ticket_id = ?",
+            (ticket_id,),
+        ).fetchone()
+    if ticket is None:
+        raise RuntimeError(f"Ticket {ticket_id} does not exist.")
+    return dict(ticket)

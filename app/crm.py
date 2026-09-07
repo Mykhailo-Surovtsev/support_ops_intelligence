@@ -7,16 +7,27 @@ from app.triage import TriageResult
 
 logger = logging.getLogger(__name__)
 
+class CrmDeliveryError(RuntimeError):
+    """Raised when a CRM did not confirm a delivery."""
+
+
+def is_crm_enabled() -> bool:
+    return bool(os.getenv("CRM_WEBHOOK_URL"))
+
+
 def sync_ticket_to_crm(
     ticket: TicketCreate,
     result: TriageResult,
     queue: TicketQueue,
-) -> CrmSyncStatus:
+) -> None:
     endpoint = os.getenv("CRM_WEBHOOK_URL")
     if not endpoint:
-        return "not_configured"
+        raise CrmDeliveryError("CRM_WEBHOOK_URL is not configured.")
 
-    headers = {"Content-Type": "application/json"}
+    headers = {
+        "Content-Type": "application/json",
+        "Idempotency-Key": f"support-ticket:{ticket.external_id}",
+    }
     api_key = os.getenv("CRM_API_KEY")
     if api_key:
         headers["Authorization"] = f"Bearer {api_key}"
@@ -40,11 +51,9 @@ def sync_ticket_to_crm(
             timeout=5,
         )
         response.raise_for_status()
-    except httpx.HTTPError:
+    except httpx.HTTPError as error:
         logger.exception(
             "CRM sync failed for external ticket %s.",
             ticket.external_id,
         )
-        return "failed"
-
-    return "synced"
+        raise CrmDeliveryError(str(error)) from error
