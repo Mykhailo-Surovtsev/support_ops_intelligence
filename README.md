@@ -1,171 +1,81 @@
 # Support Automation Hub
 
-A support-ticket intake service that assigns a priority and queue, prevents duplicate submissions, and optionally synchronizes tickets with a CRM. It demonstrates how incoming requests from a support channel can be turned into consistent, traceable routing decisions. An included n8n workflow connects the webhook to the API and selects the response route.
+## 1. Short Description
 
-## What the Project Does
+Support Automation Hub is a local support-ticket routing demo. It combines a Python/FastAPI API, SQLite storage, and an n8n workflow. It shows how a support event can be received, classified, stored, and routed to the appropriate queue through an API and webhook automation.
 
-- Validates incoming tickets and assigns them to a general, billing, or urgent queue.
-- Recognizes critical issues using explicit rules before optional AI classification.
-- Saves tickets and their routing explanations in SQLite.
-- Prevents repeated delivery of the same event from creating duplicate tickets or CRM callbacks.
-- Optionally classifies non-critical requests with OpenAI and sends saved tickets to a CRM-compatible webhook.
-- Returns routing and integration status through a documented API and n8n workflow.
+## 2. What It Does and How It Works
 
-## Run on Your Computer
+1. A support channel sends a ticket with an `external_id`, customer ID, subject, description, and channel.
+2. The FastAPI service validates the ticket and checks SQLite for the same `external_id`, so a repeated event does not create a second ticket.
+3. Deterministic rules assign a priority and queue. For example, an outage is routed as `high` priority to the `urgent` queue; a normal question is routed as `low` priority to `general`.
+4. The ticket and the reason for its routing decision are stored in SQLite. CRM delivery and AI classification are optional features and are disabled in the local demo.
+5. The n8n workflow receives the webhook, calls the API over Docker's internal network, checks the returned priority, and sends a different HTTP response for each route:
+   - standard ticket: `201 Created`;
+   - urgent ticket: `202 Accepted`.
 
-### 1. Download and Start the API
+## 3. How to Run and Check the Project
 
-Open PowerShell on Windows or Terminal on macOS/Linux. Run:
+These steps assume that Docker Desktop is installed and its engine is running. Start in the folder that contains `compose.yaml`.
 
-```shell
-git clone https://github.com/Mykhailo-Surovtsev/support_ops_intelligence.git support-ops-intelligence
-cd support-ops-intelligence
-docker compose up --build --detach
+**Step 1 — start the local demo**
+
+Open PowerShell in the project folder and run:
+
+```powershell
+docker compose -f compose.yaml -f compose.demo.yaml up --build --detach
+```
+
+`compose.demo.yaml` forces a safe local demo: no API key, AI provider, or CRM connection is used.
+
+**Step 2 — confirm that both services are ready**
+
+Run:
+
+```powershell
 docker compose ps
 ```
 
-If using a ZIP, open the terminal in the extracted folder containing `compose.yaml` and start with `docker compose up`. Wait until `support-ops-api` is running and its health status becomes `healthy`.
+Wait until `support-ops-api` shows `healthy` and `n8n-local` shows `Up`.
 
-On Windows, open the extracted folder in File Explorer, type `powershell` in its address bar, and press Enter. Then use the exact startup command above. On macOS/Linux, use Terminal from that folder.
+**Step 3 — import and publish the n8n workflow**
 
-A fresh clone uses local rules automatically; creating `.env` is unnecessary for this first test.
+1. Open `http://127.0.0.1:5678` in a browser.
+2. On the first visit, create the local n8n owner account shown on screen.
+3. On the **Workflows** page, open the arrow next to **Create workflow** and choose **Import from File**.
+4. Select `automation/route-support-ticket-by-priority.json` from this repository.
+5. Open the imported workflow and click **Publish** in the upper-right corner. The button changes to **Published**.
 
-If an existing local `.env` contains API or integration keys, start the same safe demo without reading or changing that file:
+**Step 4 — send a standard ticket**
 
-```shell
-docker compose -f compose.yaml -f compose.demo.yaml up --detach --force-recreate
-```
-
-`compose.demo.yaml` forces demo mode and disables AI and CRM calls for that run. It is intended only for localhost testing.
-
-### 2. Open the Application
-
-Open **[http://127.0.0.1:8002/docs](http://127.0.0.1:8002/docs)** in a browser on the same computer.
-
-The page should show **Support Automation Hub**. Expand an operation, click **Try it out**, enter its request body if needed, and click **Execute**. Read **Server response → Response body** for the actual result; **Example Value** is a documentation sample.
-
-Execute `GET /ready`. In the default demo, the expected response is:
-
-```json
-{
-  "status": "ready",
-  "triage_provider": "rules"
-}
-```
-
-### 3. Import and Test the n8n Workflow
-
-Open **[http://127.0.0.1:5678](http://127.0.0.1:5678)** and create a local n8n owner account. In n8n, choose **Import from File** and select `automation/route-support-ticket-by-priority.json`.
-
-For a local demo, click **Execute workflow**, then run either PowerShell command below in the project folder. The standard request should complete with `201`; the urgent request should complete with `202`.
+Return to PowerShell in the project folder and run:
 
 ```powershell
-$body = Get-Content '.\examples\n8n_standard_ticket.json' -Raw
-Invoke-RestMethod -Method Post -Uri 'http://127.0.0.1:5678/webhook-test/support-ticket' -ContentType 'application/json' -Body $body
+$n8nProdUri = 'http' + '://127.0.0.1:5678/webhook/support-ticket'
+
+$standard = Get-Content '.\examples\n8n_standard_ticket.json' -Raw | ConvertFrom-Json
+$standard.external_id = 'review_standard_001'
+$body = $standard | ConvertTo-Json -Compress
+
+$response = Invoke-WebRequest -UseBasicParsing -Method Post -Uri $n8nProdUri -ContentType 'application/json' -Body $body
+$response.StatusCode
+$response.Content
 ```
+
+Expected result: status `201`; the JSON response contains `priority: "low"` and `queue: "general"`.
+
+**Step 5 — send an urgent ticket**
+
+Run:
 
 ```powershell
-$body = Get-Content '.\examples\n8n_urgent_ticket.json' -Raw
-Invoke-RestMethod -Method Post -Uri 'http://127.0.0.1:5678/webhook-test/support-ticket' -ContentType 'application/json' -Body $body
+$urgent = Get-Content '.\examples\n8n_urgent_ticket.json' -Raw | ConvertFrom-Json
+$urgent.external_id = 'review_urgent_001'
+$body = $urgent | ConvertTo-Json -Compress
+
+$response = Invoke-WebRequest -UseBasicParsing -Method Post -Uri $n8nProdUri -ContentType 'application/json' -Body $body
+$response.StatusCode
+$response.Content
 ```
 
-After both tests succeed, click **Publish** in n8n. Use `/webhook/support-ticket` (without `-test`) for the published workflow. The API is reachable as `http://api:8002` only inside the Compose network; n8n does not need a public API port.
-
-## CRM Delivery and Retries
-
-When `CRM_WEBHOOK_URL` is set, the service writes a CRM delivery record to SQLite before the first outbound attempt. Every CRM request includes an `Idempotency-Key` based on the incoming `external_id`. A failed request is retained with exponential backoff instead of being silently lost.
-
-Call `POST /operations/crm-deliveries/retry` to retry retained failed or dead-letter deliveries without resubmitting the original ticket. A real CRM should honor the `Idempotency-Key`; this makes retries safe even if the process stopped after the CRM received a request but before SQLite recorded the success.
-
-## Security and Data Handling
-
-The supplied Compose stack is a **localhost-only demo**. Ports bind to `127.0.0.1`, n8n cannot read container environment variables from workflow expressions, and the imported workflow contains no secret.
-
-For any non-demo deployment, copy `.env.example` to `.env`, set `APP_ENV=production`, set a long random `API_SHARED_SECRET`, and set `N8N_SECURE_COOKIE=true` behind HTTPS. The API then refuses to start without that secret. In n8n, create an **HTTP Header Auth** credential with header name `X-Internal-Api-Key`, attach it to the `Create and triage ticket` node, and use the same secret. Keep credentials in n8n's credential store, not in the workflow JSON. Also protect the public `Incoming support webhook` with n8n webhook authentication or a reverse-proxy signature check before activating it.
-
-Ticket text can contain personal data. This repository uses synthetic examples only. Before connecting a real CRM or an AI provider, define the allowed fields, redaction rules, retention period, deletion workflow, access controls, and vendor data-processing terms.
-
-## Check the Main Features
-
-### Urgent Ticket
-
-In `POST /tickets`, replace the request body with:
-
-```json
-{
-  "external_id": "review_urgent_001",
-  "customer_id": "customer_demo",
-  "subject": "Service outage",
-  "description": "Our team cannot access the dashboard and the service is unavailable.",
-  "channel": "web"
-}
-```
-
-On the first submission, expect **HTTP 201**. The response should include these fields, plus a generated `ticket_id`, timestamp, and explanation:
-
-```json
-{
-  "priority": "high",
-  "queue": "urgent",
-  "triage_source": "rules",
-  "crm_sync_status": "not_configured",
-  "duplicate": false
-}
-```
-
-`not_configured` is normal in this demo: no CRM endpoint has been connected.
-
-### Duplicate Protection
-
-Click **Execute** again with the exact same body.
-
-Expect **HTTP 200**, the same `ticket_id`, and `duplicate: true`. The service returns the original ticket instead of creating another record or sending another CRM callback.
-
-`external_id` identifies the incoming event. Use a new value when testing a different ticket; reusing an existing value returns its original result even if the text changes.
-
-### Standard Ticket
-
-Send this body to the same `POST /tickets` operation:
-
-```json
-{
-  "external_id": "review_standard_001",
-  "customer_id": "customer_demo",
-  "subject": "Update profile",
-  "description": "I need help finding the profile settings in the application.",
-  "channel": "web"
-}
-```
-
-On its first submission, expect **HTTP 201**, `priority: low`, `queue: general`, and `triage_source: rules`.
-
-For a billing example, send:
-
-```json
-{
-  "external_id": "review_billing_001",
-  "customer_id": "customer_demo",
-  "subject": "Refund request",
-  "description": "I need a refund for my subscription payment.",
-  "channel": "web"
-}
-```
-
-On its first submission, expect **HTTP 201**, `priority: medium`, `queue: billing`, and `triage_source: rules`.
-
-These checks demonstrate intake, explainable routing, persistence, and duplicate protection. The `queue` field records the routing decision; it does not mean a human agent has been notified.
-
-
-## How It Works
-
-```text
-Incoming ticket → Validate → Check external_id
-                              ├─ Existing → Return original ticket
-                              └─ New → Triage → Save to SQLite → Optional CRM callback
-                                                   ↓
-                                    Priority + queue + sync status
-                                                   ↓
-                                    n8n standard or urgent response
-```
-
-The current version uses deterministic routing rules with optional AI classification. It does not require model training. SQLite and the retry endpoint are suitable for a local portfolio demonstration; a shared production deployment should use a managed database and scheduled outbox worker. The repository retains the original `support_ops_intelligence` name.
+Expected result: status `202`; the JSON response contains `priority: "high"` and `queue: "urgent"`.
